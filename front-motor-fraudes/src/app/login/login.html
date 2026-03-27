@@ -1,0 +1,34 @@
+<div class="fundo-escuro">
+  <div class="card-login">
+    
+    <div class="logo-container">
+      <!--<img src="/logo.png" alt="Logo da Faculdade" class="logo-img">-->
+      <h1>FG Bank</h1>
+      <p class="subtitulo">Motor de Prevenção a Fraudes</p>
+    </div>
+
+    <div class="formulario">
+      <div class="campo">
+        <label>E-mail</label>
+        <input type="email" placeholder="exemplo@exemplo.com.br" #email>
+      </div>
+
+      <div class="campo">
+        <label>Token de Acesso (Senha)</label>
+        <input type="password" placeholder="••••••••" #senha>
+      </div>
+
+      <button class="btn-entrar" (click)="fazerLogin(email.value)">
+        Acessar
+      </button>
+      <p class="texto-cadastro">
+        Não tem uma conta? <a (click)="irParaCadastro()">Cadastre-se</a>
+      </p>
+    </div>
+
+    <div class="rodape-seguranca">
+      <p>Acesso restrito. Monitoramento ativo 24/7.</p>
+    </div>
+
+  </div>
+</div>

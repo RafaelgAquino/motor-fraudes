@@ -1,0 +1,122 @@
+/* Ocupa a tela toda com um fundo escuro elegante */
+.fundo-escuro {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1000; /* Fica por cima de tudo */
+}
+
+/* O Card flutuante branco */
+.card-login {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-top: 5px solid #cc0000; /* Linha vermelha corporativa no topo */
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.icone-banco {
+  font-size: 40px;
+}
+
+.logo-container h1 {
+  color: #1a1a1a;
+  margin: 10px 0 5px 0;
+  font-size: 24px;
+}
+
+.subtitulo {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.campo input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #cc0000;
+  box-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+}
+
+.btn-entrar {
+  width: 100%;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-entrar:hover {
+  background-color: #a30000;
+}
+
+.rodape-seguranca {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+/* Estilo do parágrafo inteiro */
+.texto-cadastro {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #666; /* Cinza escuro para o texto normal */
+}
+
+/* Estilo apenas da palavra "Cadastre-se" (o link) */
+.texto-cadastro a {
+  color: #cc0000; /* Vermelho corporativo */
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none; /* Tira o sublinhado padrão */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse por cima do link */
+.texto-cadastro a:hover {
+  text-decoration: underline;
+  color: #a30000;
+}

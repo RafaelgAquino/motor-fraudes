@@ -1,0 +1,256 @@
+/* ========================================= */
+/* 1. MENU SUPERIOR DA ÁREA LOGADA           */
+/* ========================================= */
+.menu-interno {
+  background-color: #121212;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.menu-logo span {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.menu-acoes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.usuario-logado {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.btn-sair {
+  color: #ff4444;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.btn-sair:hover {
+  color: #ff8888;
+}
+
+/* ========================================= */
+/* 2. O CARD CENTRAL DO SISTEMA              */
+/* ========================================= */
+.painel-seguranca {
+  max-width: 550px; /* Segura o card no meio da tela */
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 2px solid #cc0000;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Mantém as bordas arredondadas intactas */
+}
+
+/* ========================================= */
+/* 3. FASE 1: FORMULÁRIO DE PIX              */
+/* ========================================= */
+.cabecalho {
+  text-align: center;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.cabecalho h2 {
+  color: #cc0000;
+  margin: 0 0 5px 0;
+  font-size: 22px;
+}
+
+.cabecalho p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.formulario {
+  padding: 30px;
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+}
+
+.campo input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #cc0000;
+  box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
+}
+
+.botao-cadastrar {
+  width: 100%;
+  padding: 14px;
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.botao-cadastrar:hover {
+  background-color: #a30000;
+}
+
+/* ========================================= */
+/* 4. FASE 2: TELA DE ALERTA DE RISCO DA IA  */
+/* ========================================= */
+.sessao-risco {
+  padding: 30px;
+}
+
+.alerta-critico {
+  text-align: center;
+  color: #cc0000;
+  margin-bottom: 20px;
+}
+
+.icone-alerta {
+  font-size: 50px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.alerta-critico h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.info-risco {
+  background-color: #fff3f3;
+  border-left: 5px solid #cc0000;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 0 4px 4px 0;
+}
+
+.info-risco p {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Barra de progresso do risco */
+.barra-risco-fundo {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  margin: 15px 0;
+  height: 25px;
+  overflow: hidden;
+}
+
+.barra-risco-preenchimento {
+  background-color: #cc0000;
+  height: 100%;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  font-weight: bold;
+  font-size: 13px;
+  transition: width 1s ease-in-out; /* Dá um efeitinho legal ao carregar a barra */
+}
+
+.motivo-ia {
+  font-size: 13px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Checkbox do termo de responsabilidade */
+.area-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+.area-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.area-checkbox label {
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+/* Botões de Ação Final */
+.botoes-acao {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-cancelar, .btn-confirmar {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+  border: none;
+}
+
+.btn-cancelar {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background-color: #ccc;
+}
+
+.btn-confirmar {
+  background-color: transparent;
+  color: #cc0000;
+  border: 2px solid #cc0000;
+}
+
+.btn-confirmar:hover {
+  background-color: #cc0000;
+  color: white;
+}

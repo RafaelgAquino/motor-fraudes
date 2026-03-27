@@ -1,0 +1,68 @@
+<div class="menu-interno">
+  <div class="menu-logo"><span>🏦 Bradesco Sec | Portal Interno</span></div>
+  <div class="menu-acoes">
+    <span class="usuario-logado">👤 Analista Operacional</span>
+    <a href="/" class="btn-sair">Sair do Sistema</a> 
+  </div>
+</div>
+
+<div class="painel-seguranca">
+  
+  <div class="sessao-pix" [style.display]="telaAtual === 'formulario' ? 'block' : 'none'">
+    <div class="cabecalho">
+      <h2>🏦 Transferência PIX</h2>
+      <p>Terminal de Análise Secundária</p>
+    </div>
+
+    <div class="formulario">
+      <div class="campo">
+        <label>Conta de Origem:</label>
+        <input type="text" placeholder="Ex: 12345-6" #origem>
+      </div>
+
+      <div class="campo">
+        <label>Conta de Destino :</label>
+        <input type="text" placeholder="Ex: 98765-4" #destino>
+      </div>
+
+      <div class="campo">
+        <label>Valor da Transferência (R$):</label>
+        <input type="number" placeholder="Ex: 15000" #valor>
+      </div>
+
+      <button class="botao-cadastrar" (click)="avaliarPix(origem.value, destino.value, valor.value)">
+        Confirmar
+      </button>
+    </div>
+  </div>
+
+  <div class="sessao-risco" [style.display]="telaAtual === 'alertaRisco' ? 'block' : 'none'">
+    <div class="alerta-critico">
+      <span class="icone-alerta">⚠️</span>
+      <h3>ALERTA DE SEGURANÇA</h3>
+    </div>
+    
+    <div class="info-risco">
+      <p>O Motor de IA detectou um padrão de fraude nesta transação.</p>
+      
+      <div class="barra-risco-fundo">
+        <div class="barra-risco-preenchimento" [style.width]="scoreRisco + '%'">
+          {{ scoreRisco }}% DE RISCO
+        </div>
+      </div>
+      
+      <p class="motivo-ia"><strong>Motivo:</strong> {{ mensagemRisco }}</p>
+    </div>
+
+    <div class="area-checkbox">
+      <input type="checkbox" id="aceiteRisco" #termoRisco>
+      <label for="aceiteRisco">Estou ciente de que esta transação possui alto risco de golpe e isento o banco de responsabilidade pela devolução do valor.</label>
+    </div>
+
+    <div class="botoes-acao">
+      <button class="btn-cancelar" (click)="cancelarTransferencia()">🛑 Cancelar Transação</button>
+      <button class="btn-confirmar" (click)="confirmarTransferencia(termoRisco.checked)">💸 Efetuar PIX Mesmo Assim</button>
+    </div>
+  </div>
+
+</div>

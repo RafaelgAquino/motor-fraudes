@@ -1,0 +1,27 @@
+<div class="painel-seguranca">
+  <div class="cabecalho">
+    <h2>📝 Portal de Cadastro - Bradesco Sec</h2>
+    <p>Coleta de Perfil Comportamental para IA</p>
+  </div>
+
+  <div class="formulario">
+    <div class="campo">
+      <label>Nome do Cliente:</label>
+      <input type="text" placeholder="Ex: João da Silva" #nome>
+    </div>
+
+    <div class="campo">
+      <label>Idade:</label>
+      <input type="number" placeholder="Ex: 35" #idade>
+    </div>
+
+    <div class="campo">
+      <label>Renda Mensal Declarada (R$):</label>
+      <input type="number" placeholder="Ex: 8500" #renda>
+    </div>
+
+    <button class="botao-cadastrar" (click)="salvarCadastro(nome.value, idade.value, renda.value)">
+      💾 Salvar Perfil do Cliente
+    </button>
+  </div>
+</div>
