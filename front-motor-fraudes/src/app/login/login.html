@@ -1,32 +1,34 @@
-<div class="fundo-escuro">
-  <div class="card-login">
+<div class="fundo-claro-premium">
+  <div class="card-moderno">
     
-    <div class="logo-container">
-      <!--<img src="/logo.png" alt="Logo da Faculdade" class="logo-img">-->
+    <div class="logo-container-moderno">
+      <svg class="icone-universidade" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5L95 25V75L50 95L5 75V25L50 5Z" fill="#1E3A8A" stroke="#EA580C" stroke-width="4"/>
+        <path d="M25 45H75M25 55H75M35 65H65M35 35H65M50 20V80" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      </svg>
       <h1>FG Bank</h1>
-      <p class="subtitulo">Motor de Prevenção a Fraudes</p>
+      <p class="subtitulo-moderno">MOTOR DE PREVENÇÃO A FRAUDES</p>
     </div>
 
-    <div class="formulario">
-      <div class="campo">
+    <form class="formulario-moderno" (submit)="fazerLogin(email.value); $event.preventDefault()">
+      <div class="campo-moderno">
         <label>E-mail</label>
-        <input type="email" placeholder="exemplo@exemplo.com.br" #email>
+        <input type="email" placeholder="exemplo@exemplo.com.br" class="input-pilula" #email>
       </div>
 
-      <div class="campo">
+      <div class="campo-moderno">
         <label>Token de Acesso (Senha)</label>
-        <input type="password" placeholder="••••••••" #senha>
+        <input type="password" placeholder="••••••••" class="input-pilula">
       </div>
 
-      <button class="btn-entrar" (click)="fazerLogin(email.value)">
-        Acessar
-      </button>
-      <p class="texto-cadastro">
-        Não tem uma conta? <a (click)="irParaCadastro()">Cadastre-se</a>
-      </p>
-    </div>
+      <button type="submit" class="btn-pilula btn-laranja">Acessar</button>
 
-    <div class="rodape-seguranca">
+      <p class="texto-cadastro-moderno">
+        Não tem uma conta? <a style="cursor: pointer" (click)="irParaCadastro()">Cadastre-se</a>
+      </p>
+    </form>
+
+    <div class="rodape-seguranca-moderno">
       <p>Acesso restrito. Monitoramento ativo 24/7.</p>
     </div>
 

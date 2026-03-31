@@ -1,68 +1,122 @@
-.painel-seguranca {
-  max-width: 500px;
-  margin: 40px auto;
-  background-color: #f8f9fa;
-  border: 2px solid #cc0000;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  font-family: Arial, sans-serif;
+/* Fundo Branco Puro Premium (Estilo Nubank) */
+.fundo-claro-premium {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1000;
 }
 
-.cabecalho {
+/* Card Moderno Largo */
+.card-moderno {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(30, 58, 138, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.logo-container-moderno {
   text-align: center;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 35px;
 }
 
-.cabecalho h2 {
-  color: #cc0000;
-  margin: 0 0 10px 0;
+.icone-universidade {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
 }
 
-.cabecalho p {
-  color: #555;
-  font-size: 14px;
+.logo-container-moderno h1 {
+  color: #1e3a8a; /* Azul Universitário */
+  margin: 10px 0 5px 0;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.subtitulo-moderno {
+  color: #ea580c; /* Laranja Vibrante */
+  font-size: 13px;
   margin: 0;
-}
-
-.formulario {
-  padding: 30px;
-}
-
-.campo {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
 }
 
-input {
+.campo-moderno {
+  margin-bottom: 22px;
+}
+
+.campo-moderno label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 9px;
+  margin-left: 10px;
+}
+
+/* Inputs Pílula-Shaped (Nubank-Style) */
+.input-pilula {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px; /* Extremamente arredondado */
+  font-size: 16px;
   box-sizing: border-box;
-  font-size: 16px;
+  transition: all 0.3s;
+  background-color: #f8fafc;
 }
 
-.botao-cadastrar {
+.input-pilula:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(30, 58, 138, 0.2);
+}
+
+/* Botões Pílula Azul */
+.btn-pilula {
   width: 100%;
-  padding: 12px;
-  background-color: #cc0000;
-  color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  padding: 16px;
+  border-radius: 50px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
-  margin-top: 10px;
+  margin-top: 15px;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.2);
+  background-color: #1e3a8a;
+  color: white;
 }
 
-.botao-cadastrar:hover {
-  background-color: #990000;
+.btn-pilula:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+.texto-cadastro-moderno {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #1e1e1e;
+}
+
+.texto-cadastro-moderno a {
+  color: #1e3a8a;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.texto-cadastro-moderno a:hover {
+  color: #ea580c;
+  text-decoration: underline;
 }

@@ -1,68 +1,86 @@
-<div class="menu-interno">
-  <div class="menu-logo"><span>🏦 Bradesco Sec | Portal Interno</span></div>
-  <div class="menu-acoes">
-    <span class="usuario-logado">👤 Analista Operacional</span>
-    <a href="/" class="btn-sair">Sair do Sistema</a> 
+<div class="header-premium">
+  <div class="header-logo">
+    <svg class="icone-menu-clean" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5L95 25V75L50 95L5 75V25L50 5Z" fill="#1E3A8A" stroke="#EA580C" stroke-width="3"/>
+    </svg>
+    <span class="logo-texto-clean">Bradesco Sec</span>
+  </div>
+  
+  <div class="header-perfil">
+    <div class="avatar-analista">AO</div>
+    <div class="info-analista">
+      <span class="nome-analista">Analista Operacional</span>
+      <a style="cursor: pointer" (click)="sair()" class="link-sair-clean">Sair do sistema</a>
+    </div>
   </div>
 </div>
 
-<div class="painel-seguranca">
-  
-  <div class="sessao-pix" [style.display]="telaAtual === 'formulario' ? 'block' : 'none'">
-    <div class="cabecalho">
-      <h2>🏦 Transferência PIX</h2>
-      <p>Terminal de Análise Secundária</p>
-    </div>
-
-    <div class="formulario">
-      <div class="campo">
-        <label>Conta de Origem:</label>
-        <input type="text" placeholder="Ex: 12345-6" #origem>
-      </div>
-
-      <div class="campo">
-        <label>Conta de Destino :</label>
-        <input type="text" placeholder="Ex: 98765-4" #destino>
-      </div>
-
-      <div class="campo">
-        <label>Valor da Transferência (R$):</label>
-        <input type="number" placeholder="Ex: 15000" #valor>
-      </div>
-
-      <button class="botao-cadastrar" (click)="avaliarPix(origem.value, destino.value, valor.value)">
-        Confirmar
-      </button>
-    </div>
-  </div>
-
-  <div class="sessao-risco" [style.display]="telaAtual === 'alertaRisco' ? 'block' : 'none'">
-    <div class="alerta-critico">
-      <span class="icone-alerta">⚠️</span>
-      <h3>ALERTA DE SEGURANÇA</h3>
-    </div>
+<div class="fundo-claro-pix">
+  <div class="card-moderno card-pix-principal">
     
-    <div class="info-risco">
-      <p>O Motor de IA detectou um padrão de fraude nesta transação.</p>
-      
-      <div class="barra-risco-fundo">
-        <div class="barra-risco-preenchimento" [style.width]="scoreRisco + '%'">
-          {{ scoreRisco }}% DE RISCO
+    @if (telaAtual === 'formulario') {
+      <div class="cabecalho-pix">
+        <h2>🏦 Transferência PIX</h2>
+        <p>Terminal de Análise de Risco</p>
+      </div>
+
+      <div class="formulario-pix-moderno">
+        
+        <div class="campo-moderno">
+          <label>Conta de Origem</label>
+          <input type="text" placeholder="Ex: 12345-6" class="input-pilula" #origem 
+                 autocomplete="off" (keyup.enter)="avaliarPix(origem.value, destino.value, valor.value)">
+        </div>
+
+        <div class="campo-moderno">
+          <label>Conta de Destino</label>
+          <input type="text" placeholder="Ex: 98765-4" class="input-pilula" #destino 
+                 autocomplete="off" (keyup.enter)="avaliarPix(origem.value, destino.value, valor.value)">
+        </div>
+
+        <div class="campo-moderno">
+          <label>Valor da Transferência (R$)</label>
+          <input type="number" placeholder="Ex: 15000" class="input-pilula" #valor 
+                 autocomplete="off" (keyup.enter)="avaliarPix(origem.value, destino.value, valor.value)">
+        </div>
+
+        <button type="button" class="btn-pilula btn-azul" (click)="avaliarPix(origem.value, destino.value, valor.value)">
+          Enviar
+        </button>
+      </div>
+    }
+
+    @if (telaAtual === 'alertaRisco') {
+      <div class="sessao-risco-moderna">
+        <div class="alerta-critico-moderno">
+          <svg class="icone-alerta-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 5L95 90H5L50 5Z" fill="#EA580C" stroke="#1E3A8A" stroke-width="4"/>
+            <path d="M50 40V70M50 80V82" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <h3>ALERTA DE SEGURANÇA</h3>
+        </div>
+        
+        <div class="info-risco-moderno">
+          <p class="texto-ia-moderno">O Motor de IA detectou um padrão de fraude nesta transação.</p>
+          <div class="barra-risco-container">
+            <div class="barra-risco-progresso" [style.width]="scoreRisco + '%'">
+              {{ scoreRisco }}% RISCO (Alto)
+            </div>
+          </div>
+          <p class="motivo-ia-moderno"><strong>Motivo:</strong> {{ mensagemRisco }}</p>
+        </div>
+
+        <div class="area-checkbox-moderna">
+          <input type="checkbox" id="aceiteRisco" #termoRisco class="checkbox-pilula">
+          <label for="aceiteRisco">Estou ciente do alto risco e isento o banco de responsabilidade jurídica.</label>
+        </div>
+
+        <div class="botoes-acao-moderna">
+          <button type="button" class="btn-pilula btn-secundario" (click)="cancelarTransferencia()">🛑 Cancelar Transação</button>
+          <button type="button" class="btn-pilula btn-laranja" (click)="confirmarTransferencia(termoRisco.checked)">💸 Efetuar PIX Mesmo Assim</button>
         </div>
       </div>
-      
-      <p class="motivo-ia"><strong>Motivo:</strong> {{ mensagemRisco }}</p>
-    </div>
+    }
 
-    <div class="area-checkbox">
-      <input type="checkbox" id="aceiteRisco" #termoRisco>
-      <label for="aceiteRisco">Estou ciente de que esta transação possui alto risco de golpe e isento o banco de responsabilidade pela devolução do valor.</label>
-    </div>
-
-    <div class="botoes-acao">
-      <button class="btn-cancelar" (click)="cancelarTransferencia()">🛑 Cancelar Transação</button>
-      <button class="btn-confirmar" (click)="confirmarTransferencia(termoRisco.checked)">💸 Efetuar PIX Mesmo Assim</button>
-    </div>
   </div>
-
 </div>

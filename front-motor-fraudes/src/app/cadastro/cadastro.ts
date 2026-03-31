@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // 👈 Se estiver no construtor abaixo, ele não vai ficar cinza!
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,15 +8,13 @@ import { Router } from '@angular/router'; // 👈 Se estiver no construtor abaix
 })
 export class Cadastro {
   
-  // 👇 A TÁTICA INFALÍVEL: Usar o construtor para injetar o Router
   constructor(private router: Router) { }
 
-  // Função para voltar ao login se o usuário desistir do cadastro
   irParaLogin() {
     this.router.navigate(['/login']);
   }
 
-  // A função principal
+  // A sua função principal de salvar, reconectada!
   async salvarCadastro(nomeDigitado: string, idadeDigitada: string, rendaDigitada: string) {
     const payload = {
       nome: nomeDigitado,
@@ -32,9 +30,9 @@ export class Cadastro {
       });
 
       if (resposta.ok) {
-        alert(`✅ Sucesso! O perfil de ${payload.nome} foi ativado com sucesso!`);
+        alert(`✅ Sucesso! O perfil comportamental de ${payload.nome} foi salvo no Banco de Dados!`);
         
-        // Agora o TypeScript sabe 100% quem é o "router"! 🚀
+        // Redirecionamento instantâneo para a área logada (PIX)! 🚀
         this.router.navigate(['/pix']); 
         
       } else {

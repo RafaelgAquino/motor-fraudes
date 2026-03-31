@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+// 👇 1. Importamos o ChangeDetectorRef (O radar manual do Angular)
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-painel-pix',
@@ -6,17 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './painel-pix.css'
 })
 export class PainelPix {
-  // Variáveis que controlam o que aparece na tela
-  telaAtual: 'formulario' | 'alertaRisco' = 'formulario';
   
-  // Dados recebidos da IA
+  telaAtual: 'formulario' | 'alertaRisco' = 'formulario';
   scoreRisco: number = 0;
   mensagemRisco: string = '';
-  
-  // Guarda os dados para disparar no final
   dadosOriginais: any;
 
+  // 👇 2. Injetamos o cdr no construtor
+  constructor(private router: Router, private cdr: ChangeDetectorRef) { }
+
+  sair() {
+    this.router.navigate(['/login']);
+  }
+
   async avaliarPix(origem: string, destino: string, valor: string) {
+    if (!origem || !destino || !valor) {
+      alert("⚠️ Preencha todos os campos antes de avaliar.");
+      return;
+    }
+
     this.dadosOriginais = { contaOrigem: origem, contaDestino: destino, valor: parseFloat(valor) };
 
     try {
@@ -27,15 +37,13 @@ export class PainelPix {
       });
 
       if (resposta.ok) {
-        const dados = await resposta.json();
-        
-        // ⚠️ SIMULADOR TEMPORÁRIO: Como nosso Java/Python ainda não mandam a porcentagem,
-        // vamos simular um risco alto aqui no Front-end só para testar a tela visual!
         this.scoreRisco = 85; 
-        this.mensagemRisco = "Alerta: Transação incompatível com a renda e idade do perfil.";
-        
-        // Troca a tela do formulário para a tela de alerta!
+        this.mensagemRisco = "Alerta: Transação incompatível com o perfil comportamental do cliente.";
         this.telaAtual = 'alertaRisco';
+        
+        // 👇 3. A MARRETADA FINAL: Força a tela a atualizar AGORA! 👇
+        this.cdr.detectChanges(); 
+
       } else {
         alert('❌ Erro de comunicação com o Cérebro Java.');
       }
@@ -44,18 +52,18 @@ export class PainelPix {
     }
   }
 
-  // Função chamada pelo botão final (após marcar o checkbox)
   confirmarTransferencia(checkboxMarcado: boolean) {
     if (checkboxMarcado) {
-      alert('💸 TRANSFERÊNCIA EFETUADA! O banco registrou sua ciência do risco para fins de auditoria.');
-      // Volta a tela para o início
+      alert('💸 TRANSFERÊNCIA EFETUADA! O banco registrou sua ciência do risco.');
       this.telaAtual = 'formulario';
+      this.cdr.detectChanges(); // Atualiza a tela de volta na hora
     } else {
       alert('⚠️ Você precisa assumir o risco marcando a caixa de seleção antes de transferir.');
     }
   }
 
   cancelarTransferencia() {
-    this.telaAtual = 'formulario'; // Apenas volta para a tela inicial
+    this.telaAtual = 'formulario';
+    this.cdr.detectChanges(); // Atualiza a tela de volta na hora
   }
 }

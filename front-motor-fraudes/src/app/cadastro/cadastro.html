@@ -1,27 +1,37 @@
-<div class="painel-seguranca">
-  <div class="cabecalho">
-    <h2>📝 Portal de Cadastro - Bradesco Sec</h2>
-    <p>Coleta de Perfil Comportamental para IA</p>
-  </div>
-
-  <div class="formulario">
-    <div class="campo">
-      <label>Nome do Cliente:</label>
-      <input type="text" placeholder="Ex: João da Silva" #nome>
+<div class="fundo-claro-premium">
+  <div class="card-moderno card-cadastro-largo">
+    
+    <div class="logo-container-moderno">
+      <svg class="icone-universidade" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5L95 25V75L50 95L5 75V25L50 5Z" fill="#1E3A8A" stroke="#EA580C" stroke-width="4"/>
+        <path d="M25 45H75M25 55H75M35 65H65M35 35H65M50 20V80" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <h1>Portal de Cadastro</h1>
+      <p class="subtitulo-moderno">COLETA DE DADOS COMPORTAMENTAIS PARA IA</p>
     </div>
 
-    <div class="campo">
-      <label>Idade:</label>
-      <input type="number" placeholder="Ex: 35" #idade>
-    </div>
+    <form class="formulario-moderno" (submit)="salvarCadastro(nome.value, idade.value, renda.value); $event.preventDefault()">
+      <div class="campo-moderno">
+        <label>Nome Completo</label>
+        <input type="text" placeholder="Ex: João da Silva" class="input-pilula" #nome>
+      </div>
 
-    <div class="campo">
-      <label>Renda Mensal Declarada (R$):</label>
-      <input type="number" placeholder="Ex: 8500" #renda>
-    </div>
+      <div class="campo-moderno">
+        <label>Idade (Anos)</label>
+        <input type="number" placeholder="Ex: 35" class="input-pilula" #idade>
+      </div>
 
-    <button class="botao-cadastrar" (click)="salvarCadastro(nome.value, idade.value, renda.value)">
-      💾 Salvar Perfil do Cliente
-    </button>
+      <div class="campo-moderno">
+        <label>Renda Mensal Declarada (R$)</label>
+        <input type="number" placeholder="Ex: 8500" class="input-pilula" #renda>
+      </div>
+
+      <button type="submit" class="btn-pilula btn-azul">Cadastrar</button>
+
+      <p class="texto-cadastro-moderno">
+        Já tem uma conta? <a style="cursor: pointer" (click)="irParaLogin()">Voltar ao Login</a>
+      </p>
+    </form>
+
   </div>
 </div>

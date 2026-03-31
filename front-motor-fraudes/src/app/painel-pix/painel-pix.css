@@ -1,256 +1,285 @@
-/* ========================================= */
-/* 1. MENU SUPERIOR DA ÁREA LOGADA           */
-/* ========================================= */
-.menu-interno {
-  background-color: #121212;
-  color: white;
+/* ==========================================
+   NOVA BARRA SUPERIOR CLEAN (ESTILO PREMIUM)
+   ========================================== */
+.header-premium {
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 15px 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 50px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.menu-logo span {
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.menu-acoes {
+.header-logo {
   display: flex;
   align-items: center;
-  gap: 20px;
-}
-
-.usuario-logado {
-  font-size: 14px;
-  color: #aaa;
-}
-
-.btn-sair {
-  color: #ff4444;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-
-.btn-sair:hover {
-  color: #ff8888;
-}
-
-/* ========================================= */
-/* 2. O CARD CENTRAL DO SISTEMA              */
-/* ========================================= */
-.painel-seguranca {
-  max-width: 550px; /* Segura o card no meio da tela */
-  margin: 0 auto;
-  background-color: #ffffff;
-  border: 2px solid #cc0000;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden; /* Mantém as bordas arredondadas intactas */
-}
-
-/* ========================================= */
-/* 3. FASE 1: FORMULÁRIO DE PIX              */
-/* ========================================= */
-.cabecalho {
-  text-align: center;
-  padding: 25px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #eee;
-}
-
-.cabecalho h2 {
-  color: #cc0000;
-  margin: 0 0 5px 0;
-  font-size: 22px;
-}
-
-.cabecalho p {
-  color: #666;
-  font-size: 14px;
-  margin: 0;
-}
-
-.formulario {
-  padding: 30px;
-}
-
-.campo {
-  margin-bottom: 20px;
-}
-
-.campo label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
-  font-size: 14px;
-}
-
-.campo input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  box-sizing: border-box;
-  transition: border-color 0.3s;
-}
-
-.campo input:focus {
-  outline: none;
-  border-color: #cc0000;
-  box-shadow: 0 0 5px rgba(204, 0, 0, 0.2);
-}
-
-.botao-cadastrar {
-  width: 100%;
-  padding: 14px;
-  background-color: #cc0000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-  margin-top: 10px;
-}
-
-.botao-cadastrar:hover {
-  background-color: #a30000;
-}
-
-/* ========================================= */
-/* 4. FASE 2: TELA DE ALERTA DE RISCO DA IA  */
-/* ========================================= */
-.sessao-risco {
-  padding: 30px;
-}
-
-.alerta-critico {
-  text-align: center;
-  color: #cc0000;
-  margin-bottom: 20px;
-}
-
-.icone-alerta {
-  font-size: 50px;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.alerta-critico h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.info-risco {
-  background-color: #fff3f3;
-  border-left: 5px solid #cc0000;
-  padding: 15px;
-  margin-bottom: 25px;
-  border-radius: 0 4px 4px 0;
-}
-
-.info-risco p {
-  margin: 0 0 10px 0;
-  font-size: 14px;
-  color: #333;
-}
-
-/* Barra de progresso do risco */
-.barra-risco-fundo {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 15px;
-  margin: 15px 0;
-  height: 25px;
-  overflow: hidden;
-}
-
-.barra-risco-preenchimento {
-  background-color: #cc0000;
-  height: 100%;
-  color: white;
-  text-align: center;
-  line-height: 25px;
-  font-weight: bold;
-  font-size: 13px;
-  transition: width 1s ease-in-out; /* Dá um efeitinho legal ao carregar a barra */
-}
-
-.motivo-ia {
-  font-size: 13px !important;
-  margin-bottom: 0 !important;
-}
-
-/* Checkbox do termo de responsabilidade */
-.area-checkbox {
-  display: flex;
-  align-items: flex-start;
   gap: 12px;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  margin-bottom: 25px;
 }
 
-.area-checkbox input {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  cursor: pointer;
+.icone-menu-clean {
+  width: 32px;
+  height: 32px;
 }
 
-.area-checkbox label {
-  font-size: 13px;
-  color: #555;
-  cursor: pointer;
-  line-height: 1.5;
+.logo-texto-clean {
+  font-size: 20px;
+  font-weight: 900;
+  color: #1e3a8a;
+  letter-spacing: 0.5px;
 }
 
-/* Botões de Ação Final */
-.botoes-acao {
+.header-perfil {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
-.btn-cancelar, .btn-confirmar {
-  flex: 1;
-  padding: 12px;
-  border-radius: 6px;
+.avatar-analista {
+  background-color: #ea580c;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.info-analista {
+  display: flex;
+  flex-direction: column;
+}
+
+.nome-analista {
+  font-size: 14px;
+  font-weight: bold;
+  color: #334155;
+}
+
+.link-sair-clean {
+  font-size: 12px;
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 2px;
+  transition: color 0.2s;
+}
+
+.link-sair-clean:hover {
+  color: #ea580c;
+  text-decoration: underline;
+}
+
+/* ==========================================
+   O RESTANTE DA TELA (CARD E FORMULÁRIO)
+   ========================================== */
+.fundo-claro-pix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px 0 100px 0;
+  background-color: #ffffff;
+}
+
+.card-moderno {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(30, 58, 138, 0.1);
+  border: 1px solid #e2e8f0;
+  margin: 0 auto;
+}
+
+.cabecalho-pix {
+  text-align: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 30px;
+}
+
+.cabecalho-pix h2 {
+  color: #ea580c;
+  margin: 0 0 6px 0;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.cabecalho-pix p {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0;
+}
+
+.campo-moderno {
+  margin-bottom: 22px;
+}
+
+.campo-moderno label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 9px;
+  margin-left: 10px;
+}
+
+.input-pilula {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  background-color: #f8fafc;
+}
+
+.input-pilula:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(30, 58, 138, 0.2);
+}
+
+.btn-pilula {
+  width: 100%;
+  border: none;
+  padding: 16px;
+  border-radius: 50px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
+  margin-top: 15px;
   transition: all 0.3s;
-  border: none;
 }
 
-.btn-cancelar {
-  background-color: #e0e0e0;
-  color: #333;
-}
-
-.btn-cancelar:hover {
-  background-color: #ccc;
-}
-
-.btn-confirmar {
-  background-color: transparent;
-  color: #cc0000;
-  border: 2px solid #cc0000;
-}
-
-.btn-confirmar:hover {
-  background-color: #cc0000;
+.btn-laranja {
+  background-color: #ea580c;
   color: white;
+  box-shadow: 0 5px 15px rgba(234, 88, 12, 0.2);
+}
+
+.btn-laranja:hover {
+  background-color: #c2410c;
+  transform: translateY(-2px);
+}
+
+.btn-azul {
+  background-color: #1e3a8a;
+  color: white;
+  box-shadow: 0 5px 15px rgba(30, 58, 138, 0.2);
+}
+
+.btn-azul:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+.alerta-critico-moderno {
+  text-align: center;
+  color: #ea580c;
+  margin-bottom: 25px;
+}
+
+.icone-alerta-svg {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.alerta-critico-moderno h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.info-risco-moderno {
+  background-color: #fdf0f0;
+  border-left: 6px solid #ea580c;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+
+.texto-ia-moderno {
+  margin: 0 0 15px 0;
+  font-size: 15px;
+  color: #1e1e1e;
+  line-height: 1.6;
+}
+
+.barra-risco-container {
+  width: 100%;
+  background-color: #e2e8f0;
+  border-radius: 50px;
+  margin: 20px 0;
+  height: 30px;
+  overflow: hidden;
+}
+
+.barra-risco-progresso {
+  background-color: #ea580c;
+  height: 100%;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: width 1.2s ease-in-out;
+  border-radius: 50px;
+}
+
+.motivo-ia-moderno {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: #1e3a8a;
+}
+
+.area-checkbox-moderna {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: #f8fafc;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.checkbox-pilula {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #ea580c;
+}
+
+.area-checkbox-moderna label {
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+.botoes-acao-moderna {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-secundario {
+  background-color: #f1f5f9;
+  color: #334155;
+  box-shadow: 0 5px 15px rgba(51, 65, 85, 0.1);
+}
+
+.btn-secundario:hover {
+  background-color: #e2e8f0;
 }
