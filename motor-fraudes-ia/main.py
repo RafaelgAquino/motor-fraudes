@@ -1,38 +1,44 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import random
+import joblib
+import pandas as pd
 
-# Inicia o servidor do Laboratório
 app = FastAPI()
 
-# Cria o "Molde" do papel que o Java vai nos enviar
+print("🧠 Carregando Motor Híbrido Zero Trust...")
+modelo_ia = joblib.load('cerebro_antifraude.pkl')
+
+# O Novo Molde de Dados
 class Transacao(BaseModel):
     contaOrigem: str
     contaDestino: str
     valor: float
+    idadeVitima: int
+    diasContaDestino: int
+    padraoTubo: int
+    primeiroEnvio: int
 
-# O Guichê de atendimento do Python
 @app.post("/analisar-risco")
 def analisar_risco(transacao: Transacao):
-    print(f"🕵️ [RECON] Analisando alvo: {transacao.contaOrigem} -> {transacao.contaDestino} | R${transacao.valor}")
+    print(f"🕵️ Analisando: {transacao.contaOrigem} -> {transacao.contaDestino} | R${transacao.valor}")
 
-    score_risco = 0
+    # Monta os dados exatamente como a IA aprendeu
+    dados_pix_agora = pd.DataFrame({
+        'idade_vitima': [transacao.idadeVitima],
+        'dias_conta_destino': [transacao.diasContaDestino],
+        'padrao_tubo': [transacao.padraoTubo],
+        'primeiro_envio': [transacao.primeiroEnvio]
+    })
 
-    # Regra 1: Blacklist (A nossa conta de laranja mapeada pelo Red Team)
-    if transacao.contaDestino == "98765-4":
-        score_risco += 80
+    # Calcula o "Risco Base" puramente matemático
+    probabilidades = modelo_ia.predict_proba(dados_pix_agora)
+    score_base = int(probabilidades[0][1] * 100)
 
-    # Regra 2: Anomalia de Valor
-    if transacao.valor > 10000:
-        score_risco += 15
-
-    # Fator de Incerteza (Simulando o cálculo matemático de uma Rede Neural)
-    score_risco += random.randint(0, 5)
-
-    # Garante que a nota nunca passe de 100%
-    score_risco = min(score_risco, 100)
-
-    print(f"🚨 [ALERTA] Score Final Calculado: {score_risco}%")
+    print(f"🚨 Risco Base (Matemático): {score_base}%")
     
-    # Devolve a nota em formato JSON para o Java ler
-    return {"riskScore": score_risco}
+    # Devolve o risco base e os alertas para o Angular montar o questionário
+    return {
+        "riskScore": score_base,
+        "alertaContaNova": transacao.diasContaDestino < 30,
+        "alertaTubo": transacao.padraoTubo == 1
+    }

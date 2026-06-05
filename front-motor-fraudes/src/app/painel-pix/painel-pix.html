@@ -25,7 +25,6 @@
       </div>
 
       <div class="formulario-pix-moderno">
-        
         <div class="campo-moderno">
           <label>Conta de Origem</label>
           <input type="text" placeholder="Ex: 12345-6" class="input-pilula" #origem 
@@ -45,8 +44,34 @@
         </div>
 
         <button type="button" class="btn-pilula btn-azul" (click)="avaliarPix(origem.value, destino.value, valor.value)">
-          Enviar
+          Enviar PIX
         </button>
+      </div>
+    }
+
+    @if (telaAtual === 'questionarioRisco') {
+      <div class="sessao-risco-moderna">
+        <div class="alerta-critico-moderno" style="color: #1e3a8a;">
+          <h3>Pausa de Segurança 🛡️</h3>
+        </div>
+        
+        <div class="info-risco-moderno" style="background-color: #f8fafc; border-left-color: #1e3a8a;">
+          <p class="texto-ia-moderno">O nosso Motor de IA suspendeu esta transação temporariamente pois identificou padrões comuns a golpes financeiros.</p>
+          
+          <ul class="lista-alertas-ia">
+            @if (alertaContaNova) { <li>A conta destino foi criada há poucos dias.</li> }
+            @if (alertaTubo) { <li>Esta conta repassa dinheiro imediatamente após receber.</li> }
+          </ul>
+        </div>
+
+        <div class="caixa-pergunta-social">
+          <p class="pergunta-destaque">Alguém do banco, delegacia ou um familiar solicitou esta transferência com urgência por telefone ou WhatsApp (usando um número diferente)?</p>
+          
+          <div class="botoes-acao-moderna" style="margin-top: 20px;">
+            <button type="button" class="btn-pilula btn-laranja" (click)="responderQuestionario(true)">Sim</button>
+            <button type="button" class="btn-pilula btn-azul" (click)="responderQuestionario(false)">Não, conheço o destinatário</button>
+          </div>
+        </div>
       </div>
     }
 
@@ -63,8 +88,9 @@
         <div class="info-risco-moderno">
           <p class="texto-ia-moderno">O Motor de IA detectou um padrão de fraude nesta transação.</p>
           <div class="barra-risco-container">
-            <div class="barra-risco-progresso" [style.width]="scoreRisco + '%'">
-              {{ scoreRisco }}% RISCO (Alto)
+            <div class="barra-risco-progresso" [style.width]="scoreRisco + '%'" 
+                 [style.background-color]="scoreRisco === 100 ? '#dc2626' : '#ea580c'">
+              {{ scoreRisco }}% RISCO (Crítico)
             </div>
           </div>
           <p class="motivo-ia-moderno"><strong>Motivo:</strong> {{ mensagemRisco }}</p>
@@ -72,7 +98,7 @@
 
         <div class="area-checkbox-moderna">
           <input type="checkbox" id="aceiteRisco" #termoRisco class="checkbox-pilula">
-          <label for="aceiteRisco">Estou ciente do alto risco e isento o banco de responsabilidade jurídica.</label>
+          <label for="aceiteRisco">Estou ciente do alto risco de fraude, confirmo a transferência por livre vontade e isento o banco de responsabilidade jurídica.</label>
         </div>
 
         <div class="botoes-acao-moderna">

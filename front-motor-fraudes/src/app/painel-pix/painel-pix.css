@@ -283,3 +283,29 @@
 .btn-secundario:hover {
   background-color: #e2e8f0;
 }
+/* ==========================================
+   NOVOS ESTILOS DO QUESTIONÁRIO DE ENGENHARIA SOCIAL
+   ========================================== */
+.lista-alertas-ia {
+  margin: 10px 0 0 20px;
+  color: #ea580c;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.caixa-pergunta-social {
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.pergunta-destaque {
+  font-size: 16px;
+  color: #1e3a8a;
+  font-weight: 800;
+  line-height: 1.5;
+  margin: 0;
+}

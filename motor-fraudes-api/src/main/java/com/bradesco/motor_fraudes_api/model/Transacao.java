@@ -32,6 +32,28 @@ public class Transacao {
     private LocalDateTime dataHora;
 
     @Column(length = 20)
-    private String statusRisco; // Ex: APROVADA, BLOQUEADA, EM_ANALISE
+    private String statusRisco;
 
+    @Column
+    private Integer scoreRisco;
+
+    // --- NOVOS CAMPOS DE ENTRADA (O que o Angular manda) ---
+    @Column
+    private Integer idadeVitima;
+
+    @Column
+    private Integer diasContaDestino;
+
+    @Column
+    private Integer padraoTubo; // 0 ou 1
+
+    @Column
+    private Integer primeiroEnvio; // 0 ou 1
+
+    // --- NOVOS CAMPOS DE SAÍDA (O que o Python devolve) ---
+    @Column
+    private Boolean alertaContaNova;
+
+    @Column
+    private Boolean alertaTubo;
 }
