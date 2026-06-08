@@ -46,7 +46,7 @@ public class TransacaoService {
         try {
             System.out.println("🚀 [JAVA] Enviando Matriz Híbrida para o laboratório Python...");
             RestTemplate restTemplate = new RestTemplate();
-            String urlPython = "http://localhost:8000/analisar-risco";
+            String urlPython = "https://motor-fraudes.onrender.com/analisar-risco";
 
             // Recebe o pacote completo (Score + Alertas)
             Map<String, Object> resposta = restTemplate.postForObject(urlPython, transacao, Map.class);
