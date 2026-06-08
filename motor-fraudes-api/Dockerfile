@@ -4,8 +4,8 @@ WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Passo 2: Pega só o arquivo .jar pronto e roda no servidor limpo
-FROM openjdk:17-jdk-slim
+# Passo 2: Pega só o arquivo .jar pronto e roda no servidor limpo (Usando a imagem atualizada)
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
