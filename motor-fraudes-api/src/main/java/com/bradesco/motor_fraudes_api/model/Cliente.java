@@ -18,4 +18,5 @@ public class Cliente {
     private Integer idade;
     private Double renda;
     private String email;
+    private String senha;
 }
