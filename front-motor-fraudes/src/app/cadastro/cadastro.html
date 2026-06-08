@@ -10,7 +10,7 @@
       <p class="subtitulo-moderno">COLETA DE DADOS COMPORTAMENTAIS PARA IA</p>
     </div>
 
-    <form class="formulario-moderno" (submit)="salvarCadastro(nome.value, idade.value, renda.value, email.value); $event.preventDefault()">
+    <form class="formulario-moderno" (submit)="salvarCadastro(nome.value, idade.value, renda.value, email.value, senha.value, confirmarSenha.value); $event.preventDefault()">
       <div class="campo-moderno">
         <label>Nome Completo</label>
         <input type="text" placeholder="Ex: João da Silva" class="input-pilula" #nome>
@@ -20,6 +20,15 @@
         <label>Idade (Anos)</label>
         <input type="number" placeholder="Ex: 35" class="input-pilula" #idade>
       </div>
+      <div class="campo-moderno">
+        <label>Senha:</label>
+        <input type="password" placeholder="Crie uma senha forte" class="input-pilula" #senha required>
+      </div>
+      <div class="campo-moderno">
+        <label>Confirmar Senha:</label>
+        <input type="password" placeholder="Digite a senha novamente" class="input-pilula" #confirmarSenha required>
+      </div> 
+
       <div class="campo-moderno">
         <label>E-mail:</label>
         <input type="email" placeholder="Ex: exemplo@email.com" class="input-pilula" #email required>
