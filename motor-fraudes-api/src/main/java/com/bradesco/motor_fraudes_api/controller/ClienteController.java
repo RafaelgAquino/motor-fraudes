@@ -28,17 +28,23 @@ public class ClienteController {
 
     @PostMapping("/login")
     public ResponseEntity<String> fazerLogin(@RequestBody Cliente dadosLogin) {
-        // Agora usando o nome correto "repository" na hora de buscar!
-        for (Cliente clienteSalvo : repository.findAll()) {
-            if (clienteSalvo.getEmail().equals(dadosLogin.getEmail()) &&
-                    clienteSalvo.getSenha().equals(dadosLogin.getSenha())) {
 
-                // Achou! Pode abrir a porta (Retorna status 200 OK)
-                return ResponseEntity.ok().body("{\"mensagem\": \"Acesso Permitido\"}");
+        for (Cliente clienteSalvo : repository.findAll()) {
+
+            // 1. Blindagem: Só analisa se o cliente do banco realmente tiver e-mail e senha cadastrados
+            if (clienteSalvo.getEmail() != null && clienteSalvo.getSenha() != null) {
+
+                // 2. Compara ignorando maiúsculas no e-mail, mas exigindo a senha exata
+                if (clienteSalvo.getEmail().equalsIgnoreCase(dadosLogin.getEmail()) &&
+                        clienteSalvo.getSenha().equals(dadosLogin.getSenha())) {
+
+                    // Achou! Pode abrir a porta
+                    return ResponseEntity.ok().body("{\"mensagem\": \"Acesso Permitido\"}");
+                }
             }
         }
 
-        // Se o loop terminar e não achar ninguém, bloqueia a porta
+        // Se terminar a varredura e ninguém bater, bloqueia
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"erro\": \"Credenciais inválidas\"}");
     }
 }
