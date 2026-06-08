@@ -10,7 +10,7 @@
       <p class="subtitulo-moderno">MOTOR DE PREVENÇÃO A FRAUDES</p>
     </div>
 
-    <form class="formulario-moderno" (submit)="fazerLogin(email.value); $event.preventDefault()">
+    <form class="formulario-moderno" (submit)="fazerLogin(email.value, senha.value); $event.preventDefault()">
       <div class="campo-moderno">
         <label>E-mail</label>
         <input type="email" placeholder="exemplo@exemplo.com.br" class="input-pilula" #email>
@@ -18,7 +18,7 @@
 
       <div class="campo-moderno">
         <label>Token de Acesso (Senha)</label>
-        <input type="password" placeholder="••••••••" class="input-pilula">
+        <input type="password" placeholder="••••••••" class="input-pilula" #senha>
       </div>
 
       <button type="submit" class="btn-pilula btn-laranja">Acessar</button>
