@@ -19,4 +19,11 @@ public class ClienteController {
         // Salva no banco de dados do PostgreSQL e já devolve o cliente com o ID preenchido
         return repository.save(novoCliente);
     }
+
+    // 👇 A Porta de Saída (Para você ver os cadastros no navegador)
+    @GetMapping
+    public java.util.List<Cliente> listarTodosOsClientes() {
+        // O Java vai no banco, pega a tabela inteira e devolve como uma lista!
+        return repository.findAll();
+    }
 }
