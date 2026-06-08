@@ -3,6 +3,7 @@ package com.bradesco.motor_fraudes_api.model; // Mantenha o seu pacote original!
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Random;
 
 @Entity
 @Table(name = "clientes")
@@ -19,4 +20,12 @@ public class Cliente {
     private Double renda;
     private String email;
     private String senha;
+    private String numeroConta;
+
+    public Cliente() {
+        // Toda vez que um cliente nasce, ele ganha uma conta aleatória de 6 dígitos
+        Random random = new Random();
+        int numeroGerado = 100000 + random.nextInt(900000);
+        this.numeroConta = String.valueOf(numeroGerado);
+    }
 }
