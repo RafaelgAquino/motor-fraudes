@@ -2,7 +2,6 @@ package com.bradesco.motor_fraudes_api.model; // Mantenha o seu pacote original!
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.util.Random;
 
 @Entity
