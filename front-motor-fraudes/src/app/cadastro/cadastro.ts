@@ -15,6 +15,7 @@ export class Cadastro {
   }
 
   // A sua função principal de salvar, reconectada!
+  // A sua função principal de salvar, reconectada na NUVEM! ☁️
   async salvarCadastro(nomeDigitado: string, idadeDigitada: string, rendaDigitada: string) {
     const payload = {
       nome: nomeDigitado,
@@ -23,7 +24,8 @@ export class Cadastro {
     };
 
     try {
-      const resposta = await fetch('http://localhost:8080/clientes', {
+      // 🎯 OLHA A MUDANÇA AQUI: Apontando direto para o Render!
+      const resposta = await fetch('https://bradesco-sec-java.onrender.com/clientes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -39,7 +41,7 @@ export class Cadastro {
         alert('❌ Erro: O Cérebro Java recusou os dados. Status: ' + resposta.status);
       }
     } catch (erro) {
-      alert('💥 Falha total de conexão. O servidor Java (IntelliJ) está ligado?');
+      alert('💥 Falha total de conexão. O servidor no Render está ligado e respondendo?');
     }
   }
 }
