@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,45 +6,45 @@ import { Router } from '@angular/router';
   templateUrl: './painel-pix.html',
   styleUrl: './painel-pix.css'
 })
-export class PainelPix {
+export class PainelPix implements OnInit {
   
-  // Três estados de tela agora!
+  nomeDoUsuario: string = '';
   telaAtual: 'formulario' | 'questionarioRisco' | 'alertaRisco' = 'formulario';
-  
   scoreRisco: number = 0;
   mensagemRisco: string = '';
   dadosOriginais: any;
-
-  // Alertas recebidos do Python para montar o questionário
   alertaContaNova: boolean = false;
   alertaTubo: boolean = false;
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) { }
 
+  ngOnInit() {
+    this.nomeDoUsuario = localStorage.getItem('nomeUsuario') || 'Analista Operacional';
+  }
+
   sair() {
+    localStorage.removeItem('nomeUsuario');
     this.router.navigate(['/login']);
   }
 
   async avaliarPix(origem: string, destino: string, valor: string) {
     if (!origem || !destino || !valor) {
-      alert("⚠️ Preencha todos os campos antes de avaliar.");
+      alert("⚠️ Preencha todos os campos.");
       return;
     }
 
-    // Simulando os dados do cliente logado e do golpista para testar a Matriz Híbrida
-    // Num cenário real, o Angular só manda o valor, e o Java busca o resto no banco.
     this.dadosOriginais = { 
       contaOrigem: origem, 
       contaDestino: destino, 
       valor: parseFloat(valor),
-      idadeVitima: 72,          // Simulando um idoso
-      diasContaDestino: 5,      // Simulando conta nova (Ativa o alertaContaNova)
-      padraoTubo: 1,            // Simulando conta tubo (Ativa o alertaTubo)
+      idadeVitima: 72,
+      diasContaDestino: 5,
+      padraoTubo: 1,
       primeiroEnvio: 1
     };
 
     try {
-      const resposta = await fetch('https://bradesco-sec-java.onrender.com', {
+      const resposta = await fetch('https://bradesco-sec-java.onrender.com/transacoes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(this.dadosOriginais)
@@ -52,49 +52,40 @@ export class PainelPix {
 
       if (resposta.ok) {
         const dadosReais = await resposta.json();
-        
         this.scoreRisco = dadosReais.scoreRisco; 
         this.alertaContaNova = dadosReais.alertaContaNova;
         this.alertaTubo = dadosReais.alertaTubo;
         this.mensagemRisco = "Status Oficial: " + dadosReais.statusRisco;
         
-        // A Fricção Positiva: Se a IA detectar risco, entra o questionário antes do bloqueio
         if (this.scoreRisco > 50) {
           this.telaAtual = 'questionarioRisco';
         } else {
-          // Se for seguro (Score baixo), aprova direto ou vai pro alerta (se for valor alto)
           this.telaAtual = dadosReais.statusRisco === 'APROVADA' ? 'formulario' : 'alertaRisco';
-          if (dadosReais.statusRisco === 'APROVADA') alert('✅ PIX enviado com sucesso!');
+          if (dadosReais.statusRisco === 'APROVADA') alert('✅ PIX enviado!');
         }
-
         this.cdr.detectChanges(); 
-      } else {
-        alert('❌ Erro de comunicação com o Cérebro Java.');
       }
     } catch (erro) {
-      alert('💥 Falha total de rede. Verifique os servidores.');
+      alert('💥 Falha de rede.');
     }
   }
 
-  // Resposta do Questionário de Engenharia Social
   responderQuestionario(caiuNoGolpe: boolean) {
     if (caiuNoGolpe) {
-      // Se ele confessou o padrão do golpe, o Risco vai pra 100%
       this.scoreRisco = 100;
-      this.mensagemRisco = "ALERTA MÁXIMO: O usuário confirmou táticas de Engenharia Social.";
+      this.mensagemRisco = "ALERTA MÁXIMO: Confirmação de Engenharia Social.";
     }
-    // Independente da resposta, depois do questionário ele vai para a tela final de decisão
     this.telaAtual = 'alertaRisco';
     this.cdr.detectChanges();
   }
 
   confirmarTransferencia(checkboxMarcado: boolean) {
     if (checkboxMarcado) {
-      alert('💸 TRANSFERÊNCIA EFETUADA! O banco registrou sua ciência do risco.');
+      alert('💸 TRANSFERÊNCIA EFETUADA!');
       this.telaAtual = 'formulario';
       this.cdr.detectChanges(); 
     } else {
-      alert('⚠️ Você precisa assumir o risco marcando a caixa de seleção antes de transferir.');
+      alert('⚠️ Marque a caixa de risco.');
     }
   }
 
