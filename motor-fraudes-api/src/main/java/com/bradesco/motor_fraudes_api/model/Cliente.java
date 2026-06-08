@@ -8,7 +8,6 @@ import java.util.Random;
 @Entity
 @Table(name = "clientes")
 @Data // 👈 Mágica 1: Cria todos os Getters, Setters, toString, equals e hashCode!
-@NoArgsConstructor // 👈 Mágica 2: Cria o construtor vazio (o Spring e o JPA exigem isso para funcionar)
 public class Cliente {
 
     @Id
