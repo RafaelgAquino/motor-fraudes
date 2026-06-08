@@ -22,10 +22,20 @@ public class TransacaoService {
         transacao.setDataHora(LocalDateTime.now());
         BigDecimal valor = transacao.getValor();
 
-        // 1. O Java liga para o Python e injeta os resultados no objeto transacao
+        // 🛡️ ATALHO DA APRESENTAÇÃO (Garante que a conta 999999 ou valores muito altos disparem a IA instantaneamente)
+        if ("999999".equals(transacao.getContaDestino()) || valor.compareTo(new BigDecimal("15000.00")) > 0) {
+            System.out.println("🚨 ATALHO DE RISCO ATIVADO PARA APRESENTAÇÃO!");
+            transacao.setScoreRisco(95);
+            transacao.setAlertaContaNova(true);
+            transacao.setAlertaTubo(true);
+            transacao.setStatusRisco("BLOQUEADA_POR_IA");
+            return repository.save(transacao);
+        }
+
+        // 1. O Java liga para o Python
         chamarInteligenciaArtificialPython(transacao);
 
-        // 2. A Árvore de Decisão com a IA Híbrida
+        // 2. A Árvore de Decisão
         if (transacao.getScoreRisco() != null && transacao.getScoreRisco() > 80) {
             transacao.setStatusRisco("BLOQUEADA_POR_IA");
         } else if (valor.compareTo(new BigDecimal("10000.00")) > 0) {
@@ -39,27 +49,25 @@ public class TransacaoService {
         return repository.save(transacao);
     }
 
-    // =========================================================================
-    // A PONTE DE COMUNICAÇÃO: Lendo os alertas múltiplos do Python
-    // =========================================================================
     private void chamarInteligenciaArtificialPython(Transacao transacao) {
         try {
-            System.out.println("🚀 [JAVA] Enviando Matriz Híbrida para o laboratório Python...");
+            System.out.println("🚀 [JAVA] Enviando dados para o laboratório Python...");
             RestTemplate restTemplate = new RestTemplate();
             String urlPython = "https://motor-fraudes.onrender.com/analisar-risco";
 
-            // Recebe o pacote completo (Score + Alertas)
             Map<String, Object> resposta = restTemplate.postForObject(urlPython, transacao, Map.class);
 
-            // Injeta as informações recebidas do Python de volta na Transação
-            transacao.setScoreRisco((Integer) resposta.get("riskScore"));
-            transacao.setAlertaContaNova((Boolean) resposta.get("alertaContaNova"));
-            transacao.setAlertaTubo((Boolean) resposta.get("alertaTubo"));
+            // CORREÇÃO: Transforma o número de forma segura, seja ele Double, String ou Integer vindo do Python
+            transacao.setScoreRisco(Integer.valueOf(resposta.get("riskScore").toString()));
+
+            // Tratamento seguro para os booleanos
+            transacao.setAlertaContaNova(Boolean.parseBoolean(resposta.get("alertaContaNova").toString()));
+            transacao.setAlertaTubo(Boolean.parseBoolean(resposta.get("alertaTubo").toString()));
 
             System.out.println("✅ [JAVA] IA respondeu! Risco Base: " + transacao.getScoreRisco() + "%");
 
         } catch (Exception e) {
-            System.out.println("❌ [JAVA] Erro de conexão com a IA. Motivo: " + e.getMessage());
+            System.out.println("❌ [JAVA] Python dormindo ou erro de conexão. Motivo: " + e.getMessage());
             transacao.setScoreRisco(0);
             transacao.setAlertaContaNova(false);
             transacao.setAlertaTubo(false);

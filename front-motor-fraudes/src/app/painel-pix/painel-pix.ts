@@ -61,12 +61,15 @@ export class PainelPix implements OnInit {
           this.telaAtual = 'questionarioRisco';
         } else {
           this.telaAtual = dadosReais.statusRisco === 'APROVADA' ? 'formulario' : 'alertaRisco';
-          if (dadosReais.statusRisco === 'APROVADA') alert('✅ PIX enviado!');
+          if (dadosReais.statusRisco === 'APROVADA') alert('✅ PIX enviado com sucesso!');
         }
         this.cdr.detectChanges(); 
+      } else {
+        // 👇 A MÁGICA FOI INSERIDA AQUI! O Angular agora avisa se o Java recusar.
+        alert('❌ O servidor recusou a transação. Verifique se o Back-end está rodando!');
       }
     } catch (erro) {
-      alert('💥 Falha de rede.');
+      alert('💥 Falha de rede. O servidor pode estar dormindo ou offline.');
     }
   }
 
@@ -81,11 +84,11 @@ export class PainelPix implements OnInit {
 
   confirmarTransferencia(checkboxMarcado: boolean) {
     if (checkboxMarcado) {
-      alert('💸 TRANSFERÊNCIA EFETUADA!');
+      alert('💸 TRANSFERÊNCIA EFETUADA APÓS ASSINATURA DE TERMO!');
       this.telaAtual = 'formulario';
       this.cdr.detectChanges(); 
     } else {
-      alert('⚠️ Marque a caixa de risco.');
+      alert('⚠️ Marque a caixa assumindo o risco antes de prosseguir.');
     }
   }
 
